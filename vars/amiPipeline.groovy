@@ -9,16 +9,12 @@ def call(body) {
 
     node {
         stage('validate') {
-            steps {
                 sh "${config.packer} validate jenkins-packer.json"
-            }
         }
         stage('build') {
-            steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CREDENTIALS']]) {
                     sh "${config.packer} build ${config.packerFile}"
                 }
-            }
         }
     }
 
