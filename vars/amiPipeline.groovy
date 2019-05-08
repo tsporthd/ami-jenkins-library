@@ -7,7 +7,7 @@ def call(body) {
     body.delegate = config
     body()
 
-    stages {
+    node {
         stage('validate') {
             steps {
                 sh "${config.packer} validate jenkins-packer.json"
@@ -21,4 +21,5 @@ def call(body) {
             }
         }
     }
+
 }
