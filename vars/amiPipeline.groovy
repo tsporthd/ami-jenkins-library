@@ -10,6 +10,7 @@ def call(body) {
     node {
         stage('checkout'){
             checkout scm
+            removeTrailingSlash "foo/"
         }
         stage('validate') {
                 sh "${config.packer} validate ${config.packerFile}"
