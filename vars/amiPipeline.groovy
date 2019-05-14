@@ -8,6 +8,9 @@ def call(body) {
     body()
 
     node {
+        stage('checkout'){
+            checkout scm
+        }
         stage('validate') {
                 sh "${config.packer} validate ${config.packerFile}"
         }
